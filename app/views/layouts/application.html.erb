@@ -129,61 +129,15 @@ button:focus {
 <%= render 'layouts/header_beta' %>
 <%= render 'layouts/flash_message' %>
 <%= yield %>
-<%# <%= render 'layouts/bottom_btns' %> 
-
+<div class="sm:hidden">
+<%= render 'layouts/bottom_btns' %> 
+</div>
 
 
   <div class="mt-12" style="height: 50px;"></div>
 
 
 
-
-
-<!---投稿フォーム--->
-<% if current_user.present? && @user.present? && current_user == @user %>
-
-<div id="post-modal" class="fixed inset-0 hidden z-50 bg-black bg-opacity-50 flex items-center justify-center">
-  <!--<div class="bg-white rounded-lg shadow-lg w-11/12 max-w-6xl p-6">-->
-  <div class="bg-white rounded-lg shadow-lg w-full sm:w-11/12 max-w-full sm:max-w-6xl p-2 sm:p-6">
-  <div class="flashcardContainer m-4 p-3 border-2 border-gray-200 rounded-2xl duration-200">
-  <%= form_with(model: @microposts, url: zen_create_path(slug: @user.slug), method: :post, local: true, data: { turbo: false }) do |f| %>
-    <div id="inputWrapper" class="text-gray-500">
-      <label for="content">覚えたい単語、フレーズ</label>
-      <%= f.text_area :content, 
-          class: "m-2 p-3 border-2 border-gray-200 duration-200 rounded-2xl w-full" %>
-
-      <label for="answer">日本語訳/解説など *optional</label>
-      <%= f.text_area :answer, 
-          class: "m-2 p-3 border-2 border-gray-200 duration-200 rounded-2xl w-full" %>
-
-      <label for="answer">自作英文 *後で入力してもok!</label>
-      <%= f.text_area :original, 
-          class: "m-2 p-3 border-2 border-gray-200 duration-200 rounded-2xl w-full" %>
-
-
-    </div>
-
-    <!-- 新しいタグ入力欄と登録ボタンを横並びにするためのグリッド -->
-    <div class="grid grid-cols-2 gap-4 mt-4">
-      <!-- タグ入力欄 -->
-      <div>
-        <label for="tags" class="block text-gray-600">タグ（1つのみ）</label>
-        <%= f.text_field :tags, 
-            class: "m-2 p-3 border-2 border-gray-200 duration-200 rounded-2xl w-full" %>
-      </div>
-
-      <!-- 登録ボタン -->
-      <div class="flex justify-end items-center">
-        <%= f.submit "カードを登録", 
-            class: "bg-gray-100 text-gray-800 rounded hover:bg-gray-200 transition duration-300 px-4 py-2" %>
-      </div>
-    </div>
-  <% end %>
-</div>
-  </div>
-</div>
-<% end %>
-<!---投稿フォーム--->
 
 
 </body>

@@ -28,3 +28,5 @@
 //= link quiz.png
 //= link lp-main.png
 //= link katakata.jpg
+//= link ep.png
+//= link hostel.png

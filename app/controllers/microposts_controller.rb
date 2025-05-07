@@ -144,16 +144,23 @@ class MicropostsController < ApplicationController
       @user = User.friendly.find(params[:slug])
       @micropost = Micropost.find(params[:id])
 
-      if @micropost.destroy && @micropost.status == "draft"
-        flash[:succeess] = "✅🗑️"
-        redirect_to draft_path(@user)
-      elsif @micropost.destroy && @micropost.status == "published"
-        flash[:succeess] = "✅🗑️"
-        redirect_to user_path(@user), status: :see_other
-      else
-        redirect_to current_user, alert: "something went wrong post still there"
+    #   if @micropost.destroy && @micropost.status == "draft"
+    #     flash[:succeess] = "✅🗑️"
+    #     redirect_to draft_path(@user)
+    #   elsif @micropost.destroy && @micropost.status == "published"
+    #     flash[:succeess] = "✅🗑️"
+    #     redirect_to user_path(@user), status: :see_other
+    #   else
+    #     redirect_to current_user, alert: "something went wrong post still there"
+    # end
+
+    if @micropost.destroy
+      flash[:succeess] = "✅🗑️"
+      redirect_to user_path(@user)
+    else
+      redirect_to current_user, alert: "something went wrong post still there"
     end
-  end
+   end
 
   def tags
     @user = User.friendly.find(params[:slug])
